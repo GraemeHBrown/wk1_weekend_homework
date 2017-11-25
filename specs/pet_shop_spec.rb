@@ -141,105 +141,105 @@ class TestPetShop < Minitest::Test
     count = stock_count(@pet_shop)
     assert_equal(7, count)
   end
-  #
-  # def test_customer_pet_count
-  #   count = customer_pet_count(@customers[0])
-  #   assert_equal(0, count)
-  # end
-  #
-  # def test_add_pet_to_customer
-  #   customer = @customers[0]
-  #   add_pet_to_customer(customer, @new_pet)
-  #   assert_equal(1, customer_pet_count(customer))
-  # end
-  #
-  # # # OPTIONAL
-  #
-  # def test_customer_can_afford_pet__insufficient_funds
-  #   customer = @customers[1]
-  #   can_buy_pet = customer_can_afford_pet(customer, @new_pet)
-  #   assert_equal(false, can_buy_pet)
-  # end
-  #
-  # def test_customer_can_afford_pet__sufficient_funds
-  #   customer = @customers[0]
-  #   can_buy_pet = customer_can_afford_pet(customer, @new_pet)
-  #   assert_equal(true, can_buy_pet)
-  # end
-  #
-  # #These are 'integration' tests so we want multiple asserts.
-  # #If one fails the entire test should fail
-  # def test_sell_pet_to_customer__pet_found
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
-  #
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
-  #
-  #   assert_equal(1, customer_pet_count(customer))
-  #   assert_equal(1, pets_sold(@pet_shop))
-  #   assert_equal(1900, total_cash(@pet_shop))
-  # end
-  #
-  # def test_sell_pet_to_customer__pet_not_found
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Dave")
-  #
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
-  #
-  #   assert_equal(0, customer_pet_count(customer))
-  #   assert_equal(0, pets_sold(@pet_shop))
-  #   assert_equal(1000, total_cash(@pet_shop))
-  # end
-  #
-  # def test_sell_pet_to_customer__insufficient_funds
-  #   customer = @customers[1]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
-  #
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
-  #
-  #   assert_equal(0, customer_pet_count(customer))
-  #   assert_equal(0, pets_sold(@pet_shop))
-  #   assert_equal(1000, total_cash(@pet_shop))
-  # end
-  #
-  # ### #Note extra tests added below to cover additional cases and to test new functionality added.
-  # def test_sell_pet_to_customer_reduces_stock_count
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
-  #
-  #   existing_stock_count = stock_count(@pet_shop)
-  #
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
-  #   assert_nil(find_pet_by_name(@pet_shop, pet[:name]))
-  #   assert_equal(existing_stock_count-1, stock_count(@pet_shop))
-  # end
-  #
-  # def test_sell_pet_to_customer_reduces_customer_cash()
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
-  #   cash_total_before_buying_pet = customer_cash_total(customer)
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
-  #   cash_total_after_buying_pet = customer_cash_total(customer)
-  #   price_of_pet = pet[:price]
-  #   assert_equal(cash_total_before_buying_pet - price_of_pet, cash_total_after_buying_pet)
-  # end
-  #
-  # def test_add_or_remove_customers_cash_add()
-  #   customer = @customers[0]
-  #   add_or_remove_customer_cash(customer, 10)
-  #   assert_equal(1010, customer_cash_total(customer))
-  # end
-  #
-  # def test_add_or_remove_customers_cash_remove()
-  #   customer = @customers[0]
-  #   add_or_remove_customer_cash(customer, -10)
-  #   assert_equal(990, customer_cash_total(customer))
-  # end
-  #
-  # def test_customer_cash_total()
-  #   customer = @customers[0]
-  #   cash_total = customer_cash_total(customer)
-  #   assert_equal(1000, cash_total)
-  # end
+
+  def test_customer_pet_count
+    count = customer_pet_count(@customers[0])
+    assert_equal(0, count)
+  end
+
+  def test_add_pet_to_customer
+    customer = @customers[0]
+    add_pet_to_customer(customer, @new_pet)
+    assert_equal(1, customer_pet_count(customer))
+  end
+
+  ### OPTIONAL
+
+  def test_customer_can_afford_pet__insufficient_funds
+    customer = @customers[1]
+    can_buy_pet = customer_can_afford_pet(customer, @new_pet)
+    assert_equal(false, can_buy_pet)
+  end
+
+  def test_customer_can_afford_pet__sufficient_funds
+    customer = @customers[0]
+    can_buy_pet = customer_can_afford_pet(customer, @new_pet)
+    assert_equal(true, can_buy_pet)
+  end
+
+  #These are 'integration' tests so we want multiple asserts.
+  #If one fails the entire test should fail
+  def test_sell_pet_to_customer__pet_found
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+
+    sell_pet_to_customer(@pet_shop, pet, customer)
+
+    assert_equal(1, customer_pet_count(customer))
+    assert_equal(1, pets_sold(@pet_shop))
+    assert_equal(1900, total_cash(@pet_shop))
+  end
+
+  def test_sell_pet_to_customer__pet_not_found
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Dave")
+
+    sell_pet_to_customer(@pet_shop, pet, customer)
+
+    assert_equal(0, customer_pet_count(customer))
+    assert_equal(0, pets_sold(@pet_shop))
+    assert_equal(1000, total_cash(@pet_shop))
+  end
+
+  def test_sell_pet_to_customer__insufficient_funds
+    customer = @customers[1]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+
+    sell_pet_to_customer(@pet_shop, pet, customer)
+
+    assert_equal(0, customer_pet_count(customer))
+    assert_equal(0, pets_sold(@pet_shop))
+    assert_equal(1000, total_cash(@pet_shop))
+  end
+
+  ###Note: extra tests added below to cover additional cases and to test new functionality added.
+  def test_sell_pet_to_customer__reduces_stock_count
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+
+    existing_stock_count = stock_count(@pet_shop)
+
+    sell_pet_to_customer(@pet_shop, pet, customer)
+    assert_nil(find_pet_by_name(@pet_shop, pet[:name]))
+    assert_equal(existing_stock_count-1, stock_count(@pet_shop))
+  end
+
+  def test_sell_pet_to_customer__reduces_customer_cash()
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+    cash_total_before_buying_pet = customer_cash_total(customer)
+    sell_pet_to_customer(@pet_shop, pet, customer)
+    cash_total_after_buying_pet = customer_cash_total(customer)
+    price_of_pet = pet[:price]
+    assert_equal(cash_total_before_buying_pet - price_of_pet, cash_total_after_buying_pet)
+  end
+
+  def test_add_or_remove_customers_cash__add()
+    customer = @customers[0]
+    add_or_remove_customer_cash(customer, 10)
+    assert_equal(1010, customer_cash_total(customer))
+  end
+
+  def test_add_or_remove_customers_cash__remove()
+    customer = @customers[0]
+    add_or_remove_customer_cash(customer, -10)
+    assert_equal(990, customer_cash_total(customer))
+  end
+
+  def test_customer_cash_total()
+    customer = @customers[0]
+    cash_total = customer_cash_total(customer)
+    assert_equal(1000, cash_total)
+  end
 
 end
