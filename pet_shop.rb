@@ -77,7 +77,7 @@ def customer_can_afford_pet(customer, pet_to_buy)
 end
 
 def sell_pet_to_customer(pet_shop, pet_to_sell, customer)
-  if pet_to_sell!=nil
+  if pet_to_sell!=nil && customer_can_afford_pet(customer, pet_to_sell)
     #add pet to customer using function
     add_pet_to_customer(customer, pet_to_sell)
     #increase pets sold using function
@@ -91,7 +91,5 @@ def sell_pet_to_customer(pet_shop, pet_to_sell, customer)
     remove_pet_by_name(pet_shop, name_of_pet_sold)
     #should also reduce customers cash by price of pet
     add_or_remove_customer_cash(customer, -price_of_pet)
-  else
-    return "Warning:  Pet not in stock."
   end
 end
