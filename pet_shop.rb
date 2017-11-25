@@ -43,7 +43,9 @@ end
 
 def remove_pet_by_name(pet_shop, name)
   pet_to_remove = find_pet_by_name(pet_shop, name)
-  pet_shop[:pets].delete(pet_to_remove)
+  if pet_to_remove!=nil
+    pet_shop[:pets].delete(pet_to_remove)
+  end
 end
 
 def add_pet_to_stock(pet_shop, new_pet_to_add)
