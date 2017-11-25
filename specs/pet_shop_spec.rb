@@ -224,10 +224,10 @@ class TestPetShop < Minitest::Test
     assert_equal(1010, customer_cash_total(customer))
   end
 
-  def test_add_or_remove_customers_cash_add()
+  def test_add_or_remove_customers_cash_remove()
     customer = @customers[0]
-    add_or_remove_customer_cash(customer, 10)
-    assert_equal(1010, customer_cash_total(customer))
+    add_or_remove_customer_cash(customer, -10)
+    assert_equal(990, customer_cash_total(customer))
   end
 
   def test_customer_cash_total()
