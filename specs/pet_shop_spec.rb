@@ -213,9 +213,15 @@ class TestPetShop < Minitest::Test
     assert_nil(find_pet_by_name(@pet_shop, pet[:name]))
     assert_equal(existing_stock_count-1, stock_count(@pet_shop))
   end
-//# TODO:
-  def test_sell_pet_to_customer_reduces_customer_cash
 
+  def test_sell_pet_to_customer_reduces_customer_cash()
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+    cash_total_before_buying_pet = customer_cash_total(customer)
+    sell_pet_to_customer(@pet_shop, pet, customer)
+    cash_total_after_buying_pet = customer_cash_total(customer)
+    price_of_pet = pet[:price]
+    assert_equal(cash_total_before_buying_pet - price_of_pet, cash_total_after_buying_pet)
   end
 
   def test_add_or_remove_customers_cash_add()
