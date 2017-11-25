@@ -77,17 +77,21 @@ def customer_can_afford_pet(customer, pet_to_buy)
 end
 
 def sell_pet_to_customer(pet_shop, pet_to_sell, customer)
-  #add pet to customer using function
-  add_pet_to_customer(customer, pet_to_sell)
-  #increase pets sold using function
-  increase_pets_sold(pet_shop, 1)
-  #add cash to pet shop using add or remove cash
-  price_of_pet = pet_to_sell[:price]
-  add_or_remove_cash(pet_shop, price_of_pet)
-  #remove pet from stock using remove pet by name.
-  #Note the code below isn't needed to pass the test but is included to complete function.
-  name_of_pet_sold = pet_to_sell[:name]
-  remove_pet_by_name(pet_shop, name_of_pet_sold)
-  #should also reduce customers cash by price of pet
-  add_or_remove_customer_cash(customer, -price_of_pet)
+  if pet_to_sell!=nil
+    #add pet to customer using function
+    add_pet_to_customer(customer, pet_to_sell)
+    #increase pets sold using function
+    increase_pets_sold(pet_shop, 1)
+    #add cash to pet shop using add or remove cash
+    price_of_pet = pet_to_sell[:price]
+    add_or_remove_cash(pet_shop, price_of_pet)
+    #remove pet from stock using remove pet by name.
+    #Note the code below isn't needed to pass the test but is included to complete function.
+    name_of_pet_sold = pet_to_sell[:name]
+    remove_pet_by_name(pet_shop, name_of_pet_sold)
+    #should also reduce customers cash by price of pet
+    add_or_remove_customer_cash(customer, -price_of_pet)
+  else
+    return "Warning:  Pet not in stock."
+  end
 end
