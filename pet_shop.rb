@@ -54,6 +54,14 @@ def customer_pet_count(customer)
   return customer[:pets].size()
 end
 
+def customer_cash_total(customer)
+  return customer[:cash]
+end
+
+def add_or_remove_customer_cash(customer, amount)
+  customer[:cash]+=amount
+end
+
 def add_pet_to_customer(customer, pet_to_add)
   customer[:pets].push(pet_to_add)
 end
@@ -81,4 +89,5 @@ def sell_pet_to_customer(pet_shop, pet_to_sell, customer)
   name_of_pet_sold = pet_to_sell[:name]
   remove_pet_by_name(pet_shop, name_of_pet_sold)
   #should also reduce customers cash by price of pet
+  add_or_remove_customer_cash(customer, price_of_pet)
 end

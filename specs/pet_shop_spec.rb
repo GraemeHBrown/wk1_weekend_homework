@@ -202,7 +202,7 @@ class TestPetShop < Minitest::Test
   #   assert_equal(1000, total_cash(@pet_shop))
   # end
 
-  #Note extra tests added below to cover additional cases and to test new functionality added.
+  #Note extra tests added below to coverq additional cases and to test new functionality added.
   def test_sell_pet_to_customer_reduces_stock_count
     customer = @customers[0]
     pet = find_pet_by_name(@pet_shop,"Arthur")
@@ -213,4 +213,27 @@ class TestPetShop < Minitest::Test
     assert_nil(find_pet_by_name(@pet_shop, pet[:name]))
     assert_equal(existing_stock_count-1, stock_count(@pet_shop))
   end
+//# TODO:
+  def test_sell_pet_to_customer_reduces_customer_cash
+
+  end
+
+  def test_add_or_remove_customers_cash_add()
+    customer = @customers[0]
+    add_or_remove_customer_cash(customer, 10)
+    assert_equal(1010, customer_cash_total(customer))
+  end
+
+  def test_add_or_remove_customers_cash_add()
+    customer = @customers[0]
+    add_or_remove_customer_cash(customer, 10)
+    assert_equal(1010, customer_cash_total(customer))
+  end
+
+  def test_customer_cash_total()
+    customer = @customers[0]
+    cash_total = customer_cash_total(customer)
+    assert_equal(1000, cash_total)
+  end
+
 end
